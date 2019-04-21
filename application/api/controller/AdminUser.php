@@ -23,6 +23,6 @@ class AdminUser extends Controller{
     public function test(){
         // $result=model('common/AdminDepartment')->find(1);
         $result=model('common/AdminUser')->find(1);
-        halt($result->toArray());
+        halt($result->department_id);
     }
 }

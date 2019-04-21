@@ -21,6 +21,8 @@ class AdminUser extends Model{
     // }
     //复杂的关联获取器 方法二
     public function getDepartmentIdAttr($value,$data){
-        return $this->belongsTo('AdminDepartment','department_id','id')->where('id',$data['department_id'])->value('name');
+        // return $this->belongsTo('AdminDepartment','department_id','id');
+        // return $this->belongsTo('AdminDepartment','department_id','id')->where('id',$data['department_id'])->value('name');
+        return Model('common/AdminDepartment')->where('id',$data['department_id'])->value('name');
     }
 }
