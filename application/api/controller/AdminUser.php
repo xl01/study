@@ -21,4 +21,10 @@ class AdminUser extends Controller{
 
         return $user_info->toArray();
         }
+    }
+    public function test(){
+        // $result=model('common/AdminDepartment')->find(1);
+        $result=model('common/AdminUser')->find(1);
+        halt($result->department_id);
+    }
 }
