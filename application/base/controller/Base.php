@@ -1,4 +1,4 @@
-<?php
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     <?php
 /**
 * Created by PhpStorm.
 * Power by Mikkle
@@ -60,5 +60,25 @@ class Base extends Controller
         }
         }
         return $data;
+    }
+    /**
+    * 快速修改
+    * #User: Mikkle
+    * #Email:776329498@qq.com
+    * @param $array
+    * @param bool|false $validate_name
+    * @param string $model_name
+    * @return array 返回code码
+    */
+    protected function editData($parameter=false,$validate_name=false,$model_name=false,$save_data=[]){
+        if(empty($save_data)){
+            if($parameter != false && is_array($parameter)){
+                $data=$this->buildParam($parameter);
+            }else{
+                $data =$this->request->post();
+            }
+        }else{
+            
+        }
     }
 }
