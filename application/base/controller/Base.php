@@ -40,8 +40,7 @@ class Base extends Controller
         }
         return json($return_data);
     }
-    public static function showReturnCodeWithOutData($code = '', $msg = '
-    ')
+    public static function showReturnCodeWithOutData($code = '', $msg = '')
     {
         return self::showReturnCode($code, [], $msg);
     }
