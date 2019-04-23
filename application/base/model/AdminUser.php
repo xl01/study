@@ -1,5 +1,5 @@
 <?php
-namespace app\common\model;
+namespace app\base\model;
 
 use think\Model;
 
@@ -15,7 +15,8 @@ class AdminUser extends Model
     //方法一
     public function getDepartmentIdAttr($value,$data)
     {
-    return $this->belongsTo('AdminDepartment','department_id','id')->where('id',$value)->value('name');
+        return Model('base/AdminDepartment')->where('id',$data['department_id'])->value('name');
+    // return $this->belongsTo('AdminDepartment','department_id','id')->where('id',$value)->value('name');
     }
     //方法二
     // public function getDepartmentIdAttr($value,$data)

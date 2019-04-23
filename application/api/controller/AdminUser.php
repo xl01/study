@@ -12,19 +12,12 @@ use think\Controller;
 class AdminUser extends Controller{
     public function adminUserInfo(){
         $open_id='oO059v39zsst76IkuiYV3yMvc4Sw';
-        $user_info=model('common/AdminUser')->getInfoByOpenid($open_id);
+        $user_info=model('base/AdminUser')->getInfoByOpenid($open_id);
         return $user_info->getdata();
     }
     public function adminUserWithDepartment(){
         $open_id='oO059v39zsst76IkuiYV3yMvc4Sw';
-        $user_info=model('common/AdminUser')->getInfoByOpenid($open_id);
-
+        $user_info=model('base/AdminUser')->getInfoByOpenid($open_id);
         return $user_info->toArray();
         }
     }
-    public function test(){
-        // $result=model('common/AdminDepartment')->find(1);
-        $result=model('common/AdminUser')->find(1);
-        halt($result->department_id);
-    }
-}
