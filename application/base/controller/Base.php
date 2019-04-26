@@ -1,4 +1,6 @@
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     <?php
+<?php
+namespace app\base\controller;
+
 /**
 * Created by PhpStorm.
 * Power by Mikkle
@@ -6,8 +8,6 @@
 * Date: 2017/4/17
 * Time: 9:33
 */
-namespace app\base\controller;
-
 use think\Controller;
 
 class Base extends Controller
