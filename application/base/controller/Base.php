@@ -54,10 +54,10 @@ class Base extends Controller
     protected function buildParam($array)
     {
         $data=[];
-        if (is_array($array)){
-        foreach( $array as $item=>$value ){
-        $data[$item] = $this->request->param($value);
-        }
+        if (is_array($array)) {
+            foreach ($array as $item=>$value) {
+                $data[$item] = $this->request->param($value);
+            }
         }
         return $data;
     }
@@ -70,15 +70,55 @@ class Base extends Controller
     * @param string $model_name
     * @return array 返回code码
     */
-    protected function editData($parameter=false,$validate_name=false,$model_name=false,$save_data=[]){
-        if(empty($save_data)){
-            if($parameter != false && is_array($parameter)){
-                $data=$this->buildParam($parameter);
-            }else{
-                $data =$this->request->post();
+    protected function editData($parameter = false, $validate_name = false, $model_name = false, $save_data = [])
+    {
+        if (empty($save_data)) {
+            if ($parameter != false && is_array($parameter)) {
+                $data = $this->buildParam($parameter);
+            } else {
+                $data = $this->request->post();
             }
-        }else{
-            
+        } else {
+            $data = $save_data;
         }
+        if (!$data) {
+            return $this->showReturnCode(1004);
+        }
+
+        // if ($this->checkLoginToken() && !isset($data['uuid'])) {
+        //     $data['uuid'] = $this->uuid;
+        // }
+
+        if ($validate_name != false) {
+            $result = $this->validate($data, $validate_name);
+            if (true !== $result) {
+                return $this->showReturnCodeWithOutData(1003, $result);
+            }
+        }
+        $model_edit = Loader::model($model_name);
+        //dump($model_edit);
+        if (!$model_edit) {
+            return $this->showReturnCode(1010);
+        }
+        return $model_edit->editData($data);
+    }
+    
+    protected function doModelAction(
+        $param_data,
+        $validate_name = false,
+        $model_name = false,
+        $action_name='editData'
+    ) {
+        if ($validate_name != false) {
+            $result = $this->validate($param_data, $validate_name);
+            if (true !== $result) {
+                return $this->showReturnCodeWithOutData(1003, $result);
+            }
+        }
+        $model_edit = Loader::model($model_name);
+        if (!$model_edit) {
+            return $this->showReturnCode(1010);
+        }
+        return $model_edit->$action_name($param_data);
     }
 }
