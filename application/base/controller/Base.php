@@ -9,6 +9,7 @@ namespace app\base\controller;
 * Time: 9:33
 */
 use think\Controller;
+use think\Loader;
 
 class Base extends Controller
 {
@@ -96,7 +97,7 @@ class Base extends Controller
             }
         }
         $model_edit = Loader::model($model_name);
-        //dump($model_edit);
+        // dump($model_edit);
         if (!$model_edit) {
             return $this->showReturnCode(1010);
         }

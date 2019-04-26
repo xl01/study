@@ -1,9 +1,9 @@
 <?php
 namespace app\base\model;
 
-use think\Model;
+use app\base\model\Base;
 
-class Province extends Model{
+class Province extends Base{
 
     public function citys(){
         return $this->hasMany('City');

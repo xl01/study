@@ -14,4 +14,13 @@ class Index extends Base
     $model_name='base/Project';
     halt(json($this->editData()));
     }
+    public function province(){
+        return $this->fetch();
+    }
+    public function save(){
+        $save_data=['name'];
+        // $validate_name = "base/ProjectEnty.edit";
+        $model_name='base/Province';
+        halt($this->editData(false,false,$model_name,$save_data));
+    }
 }
