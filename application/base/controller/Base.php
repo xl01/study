@@ -104,11 +104,7 @@ class Base extends Controller
         return $model_edit->editData($data);
     }
     
-    protected function doModelAction(
-        $param_data,
-        $validate_name = false,
-        $model_name = false,
-        $action_name='editData'
+    protected function doModelAction($param_data,$validate_name = false,$model_name = false,$action_name='editData'
     ) {
         if ($validate_name != false) {
             $result = $this->validate($param_data, $validate_name);
